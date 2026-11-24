@@ -1,8 +1,8 @@
-"""Stack (Stiva): strukturë LIFO (Last In, First Out).
+"""Stack: strukturë LIFO (Last In, First Out).
 
 Përgjegjëse: Altina Abazi
 
-Implementimi përdor listë të lidhur, ku maja (top) e stivës është koka e listës:
+Implementimi përdor listë të lidhur, ku maja (top) e Stack-ut është koka e listës:
 
     top
      |
@@ -18,31 +18,31 @@ from structures.node import Node
 
 
 class EmptyStackError(Exception):
-    """Ngritet kur kërkohet pop ose peek nga një stivë e zbrazët."""
+    """Ngritet kur kërkohet pop ose peek nga një Stack i zbrazët."""
 
 
 class Stack:
-    """Stivë e implementuar me listë të lidhur, pa koleksione të gatshme."""
+    """Stack i implementuar me listë të lidhur, pa koleksione të gatshme."""
 
     def __init__(self, items=None):
-        self._top = None   # nyja në majë të stivës
+        self._top = None   # nyja në majë të Stack-ut
         self._size = 0     # numri i elementeve
         if items is not None:
             for item in items:
                 self.push(item)
 
     def push(self, value):
-        """Vendos `value` në majë të stivës. O(1)"""
+        """Vendos `value` në majë të Stack-ut. O(1)"""
         self._top = Node(value, self._top)
         self._size += 1
 
     def pop(self):
         """Heq dhe kthen elementin në majë. O(1)
 
-        Ngre EmptyStackError nëse stiva është e zbrazët.
+        Ngre EmptyStackError nëse Stack-u është i zbrazët.
         """
         if self.is_empty():
-            raise EmptyStackError("pop nga stivë e zbrazët")
+            raise EmptyStackError("pop nga Stack i zbrazët")
         node = self._top
         self._top = node.next
         self._size -= 1
@@ -51,14 +51,14 @@ class Stack:
     def peek(self):
         """Kthen elementin në majë pa e hequr. O(1)
 
-        Ngre EmptyStackError nëse stiva është e zbrazët.
+        Ngre EmptyStackError nëse Stack-u është i zbrazët.
         """
         if self.is_empty():
-            raise EmptyStackError("peek në stivë të zbrazët")
+            raise EmptyStackError("peek në Stack të zbrazët")
         return self._top.value
 
     def is_empty(self):
-        """Kthen True nëse stiva nuk ka elemente. O(1)"""
+        """Kthen True nëse Stack-u nuk ka elemente. O(1)"""
         return self._top is None
 
     def __len__(self):
@@ -68,7 +68,7 @@ class Stack:
         """Iteron nga maja drejt fundit, në rendin që do të dilnin me pop.
 
         Përdor `yield`, kështu që elementet kthehen një nga një pa krijuar
-        kopje të stivës, dhe stiva nuk ndryshon.
+        kopje të Stack-ut, dhe Stack-u nuk ndryshon.
         """
         current = self._top
         while current is not None:

@@ -37,7 +37,7 @@ class TestStack(unittest.TestCase):
     def test_iter_goes_top_to_bottom(self):
         s = Stack(["a", "b", "c"])
         self.assertEqual(list(s), ["c", "b", "a"])
-        self.assertEqual(len(s), 3)  # iterimi nuk e ndryshon stivën
+        self.assertEqual(len(s), 3)  # iterimi nuk e ndryshon Stack-un
 
     def test_push_after_emptying(self):
         s = Stack([1])

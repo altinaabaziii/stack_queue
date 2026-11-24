@@ -4,13 +4,13 @@ Përgjegjëse: Altina Abazi
 
 Algoritmi:
   1. Lexo tekstin karakter për karakter.
-  2. Kur gjen kllapë hapëse ( [ {  -> bëj push në stivë (bashkë me pozicionin).
+  2. Kur gjen kllapë hapëse ( [ {  -> bëj push në Stack (bashkë me pozicionin).
   3. Kur gjen kllapë mbyllëse ) ] } :
-       - nëse stiva është bosh       -> gabim: mbyllëse pa hapëse;
+       - nëse Stack-u është bosh     -> gabim: mbyllëse pa hapëse;
        - përndryshe bëj pop; nëse kllapa e nxjerrë nuk përputhet -> gabim.
-  4. Në fund, nëse stiva nuk është bosh -> gabim: kllapë e pambyllur.
+  4. Në fund, nëse Stack-u nuk është bosh -> gabim: kllapë e pambyllur.
 
-Stiva funksionon sepse kllapa e fundit e hapur duhet të mbyllet e para (LIFO).
+Stack-u funksionon sepse kllapa e fundit e hapur duhet të mbyllet e para (LIFO).
 Kompleksiteti: O(n) kohë, O(n) memorie, ku n është gjatësia e tekstit.
 
 Ekzekutimi: python -m demos.bracket_matching
@@ -36,7 +36,7 @@ class BracketResult:
 def check_brackets(text, verbose=False):
     """Kontrollon nëse kllapat në `text` janë të balancuara.
 
-    Kur `verbose=True` shtyp çdo hap dhe përmbajtjen e stivës.
+    Kur `verbose=True` shtyp çdo hap dhe përmbajtjen e Stack-ut.
     """
     stack = Stack()  # ruan çifte (kllapa, pozicioni)
 
@@ -75,7 +75,7 @@ def check_brackets(text, verbose=False):
 
 def _trace(i, ch, action, stack):
     contents = " ".join(c for c, _ in stack) or "(bosh)"
-    print(f"  [{i:>2}] '{ch}'  {action}  ->  stiva (maja majtas): {contents}")
+    print(f"  [{i:>2}] '{ch}'  {action}  ->  stack (maja majtas): {contents}")
 
 
 def show_result(text, result):
